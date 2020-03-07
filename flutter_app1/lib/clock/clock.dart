@@ -11,7 +11,7 @@ class Clock extends StatefulWidget {
 }
 
 class _ClockState extends State<Clock> {
-  BinaryTime _now = BinaryTime();
+  Time _now = Time();
   Date _nowDate = Date();
 
   // Tick the clock
@@ -20,7 +20,7 @@ class _ClockState extends State<Clock> {
     Timer.periodic(Duration(seconds: 1), (v) {
       setState(() {
         _nowDate = Date();
-        _now = BinaryTime();
+        _now = Time();
       });
     });
     super.initState();
@@ -79,30 +79,30 @@ class _ClockState extends State<Clock> {
             children: [
               // Columns for the clock
               ClockText(
-                  binaryInteger: _now.hourTens
+                  TimeInteger: _now.hourTens
               ),
               ClockText(
-                  binaryInteger: _now.hourOnes
+                  TimeInteger: _now.hourOnes
               ),
               Text(
                 ':',
                 style: TextStyle(fontSize: 40, color: Colors.white),
               ),
               ClockText(
-                  binaryInteger: _now.minuteTens
+                  TimeInteger: _now.minuteTens
               ),
               ClockText(
-                  binaryInteger: _now.minuteOnes
+                  TimeInteger: _now.minuteOnes
               ),
               Text(
                 ':',
                 style: TextStyle(fontSize: 40, color: Colors.white),
               ),
               ClockText(
-                  binaryInteger: _now.secondTens
+                  TimeInteger: _now.secondTens
               ),
               ClockText(
-                  binaryInteger: _now.secondOnes
+                  TimeInteger: _now.secondOnes
               ),
             ],
           ),
@@ -111,39 +111,39 @@ class _ClockState extends State<Clock> {
   }
 }
 
-class BinaryTime {
-  List<String> binaryIntegers;
+class Time {
+  List<String> TimeIntegers;
 
-  BinaryTime() {
+  Time() {
     DateTime now = DateTime.now();
     String hhmmss = DateFormat("Hms").format(now).replaceAll(':', '');
 
-    binaryIntegers = hhmmss
+    TimeIntegers = hhmmss
         .split('')
         .map((str) => int.parse(str).toRadixString(2).padLeft(4, '0'))
         .toList();
   }
 
-  get hourTens => binaryIntegers[0];
-  get hourOnes => binaryIntegers[1];
-  get minuteTens => binaryIntegers[2];
-  get minuteOnes => binaryIntegers[3];
-  get secondTens => binaryIntegers[4];
-  get secondOnes => binaryIntegers[5];
+  get hourTens => TimeIntegers[0];
+  get hourOnes => TimeIntegers[1];
+  get minuteTens => TimeIntegers[2];
+  get minuteOnes => TimeIntegers[3];
+  get secondTens => TimeIntegers[4];
+  get secondOnes => TimeIntegers[5];
 }
 
 class ClockText extends StatelessWidget {
-  String binaryInteger;
+  String TimeInteger;
   List bits;
 
-  ClockText({this.binaryInteger}) {
-    bits = binaryInteger.split('');
+  ClockText({this.TimeInteger}) {
+    bits = TimeInteger.split('');
   }
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      int.parse(binaryInteger, radix: 2).toString(),
+      int.parse(TimeInteger, radix: 2).toString(),
       style: TextStyle(fontSize: 40, color: Colors.white),
     );
   }
