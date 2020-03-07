@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_app1/Basic Page.dart';
 
 void main() {
@@ -16,6 +17,13 @@ class Start extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: BasicPage(title: 'Senior Viewer'),
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('ko'),
+      ],
     );
   }
 }

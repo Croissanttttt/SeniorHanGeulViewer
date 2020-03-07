@@ -50,7 +50,7 @@ class _ClockState extends State<Clock> {
               ),
               Text(
                 '년',
-                style: TextStyle(fontSize: 40, color: Colors.white),
+                style: TextStyle(fontSize: 40, color: Colors.black),
               ),
               DateText(
                   dateInteger: _nowDate.monthTens
@@ -60,7 +60,7 @@ class _ClockState extends State<Clock> {
               ),
               Text(
                 '월',
-                style: TextStyle(fontSize: 40, color: Colors.white),
+                style: TextStyle(fontSize: 40, color: Colors.black),
               ),
               DateText(
                   dateInteger: _nowDate.dayTens
@@ -70,7 +70,7 @@ class _ClockState extends State<Clock> {
               ),
               Text(
                 '일',
-                style: TextStyle(fontSize: 40, color: Colors.white),
+                style: TextStyle(fontSize: 40, color: Colors.black),
               ),
             ],
           ),
@@ -79,30 +79,30 @@ class _ClockState extends State<Clock> {
             children: [
               // Columns for the clock
               ClockText(
-                  TimeInteger: _now.hourTens
+                  timeInteger: _now.hourTens
               ),
               ClockText(
-                  TimeInteger: _now.hourOnes
+                  timeInteger: _now.hourOnes
               ),
               Text(
                 ':',
-                style: TextStyle(fontSize: 40, color: Colors.white),
+                style: TextStyle(fontSize: 40, color: Colors.black),
               ),
               ClockText(
-                  TimeInteger: _now.minuteTens
+                  timeInteger: _now.minuteTens
               ),
               ClockText(
-                  TimeInteger: _now.minuteOnes
+                  timeInteger: _now.minuteOnes
               ),
               Text(
                 ':',
-                style: TextStyle(fontSize: 40, color: Colors.white),
+                style: TextStyle(fontSize: 40, color: Colors.black),
               ),
               ClockText(
-                  TimeInteger: _now.secondTens
+                  timeInteger: _now.secondTens
               ),
               ClockText(
-                  TimeInteger: _now.secondOnes
+                  timeInteger: _now.secondOnes
               ),
             ],
           ),
@@ -112,39 +112,39 @@ class _ClockState extends State<Clock> {
 }
 
 class Time {
-  List<String> TimeIntegers;
+  List<String> timeIntegers;
 
   Time() {
     DateTime now = DateTime.now();
     String hhmmss = DateFormat("Hms").format(now).replaceAll(':', '');
 
-    TimeIntegers = hhmmss
+    timeIntegers = hhmmss
         .split('')
         .map((str) => int.parse(str).toRadixString(2).padLeft(4, '0'))
         .toList();
   }
 
-  get hourTens => TimeIntegers[0];
-  get hourOnes => TimeIntegers[1];
-  get minuteTens => TimeIntegers[2];
-  get minuteOnes => TimeIntegers[3];
-  get secondTens => TimeIntegers[4];
-  get secondOnes => TimeIntegers[5];
+  get hourTens => timeIntegers[0];
+  get hourOnes => timeIntegers[1];
+  get minuteTens => timeIntegers[2];
+  get minuteOnes => timeIntegers[3];
+  get secondTens => timeIntegers[4];
+  get secondOnes => timeIntegers[5];
 }
 
 class ClockText extends StatelessWidget {
-  String TimeInteger;
+  String timeInteger;
   List bits;
 
-  ClockText({this.TimeInteger}) {
-    bits = TimeInteger.split('');
+  ClockText({this.timeInteger}) {
+    bits = timeInteger.split('');
   }
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      int.parse(TimeInteger, radix: 2).toString(),
-      style: TextStyle(fontSize: 40, color: Colors.white),
+      int.parse(timeInteger, radix: 2).toString(),
+      style: TextStyle(fontSize: 40, color: Colors.black),
     );
   }
 }
@@ -184,7 +184,7 @@ class DateText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       int.parse(dateInteger, radix: 2).toString(),
-      style: TextStyle(fontSize: 40, color: Colors.white),
+      style: TextStyle(fontSize: 40, color: Colors.black),
     );
   }
 }
