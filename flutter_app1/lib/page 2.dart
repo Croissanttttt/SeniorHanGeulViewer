@@ -21,9 +21,6 @@ class _Page2StatefulWidgetState extends State<Page2StatefulWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Second Page'),
-      ),
       body: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -49,15 +46,6 @@ class _Page2StatefulWidgetState extends State<Page2StatefulWidget> {
             },
           ),
         ],
-      ),
-      bottomNavigationBar: BottomAppBar(
-        elevation: 0.0,
-        child: Container(
-          child: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {},
-          ),
-        ),
       ),
     );
   }

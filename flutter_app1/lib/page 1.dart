@@ -27,111 +27,90 @@ class _Page1StatefulWidgetState extends State<Page1StatefulWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Sample App'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.share),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(Icons.delete),
-            onPressed: () {},
-          ),
-        ],
-      ),
-
-      body: new Center(
-        child: new GridView.count(
-            crossAxisCount: 2,
-            childAspectRatio: 4/2.9,
+      body: Center(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Center(
-                child: Container(
-                    color: Colors.lightBlue[300],
-                    child:IconButton(
-                      iconSize: 130.0,
-                      icon:Icon(Icons.call,color: Colors.white),
-                      onPressed: () {},
-                    )),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  IconButton(
+                    icon: Icon(Icons.call),
+                    onPressed: (){
+                      print('call');
+                    },
+                    iconSize: 100.0,
+                  ),
+                  SizedBox(
+                    width: 8.0,
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.message),
+                    onPressed: (){
+                      print('message');
+                    },
+                    iconSize: 100.0,
+                  ),
+                  SizedBox(
+                    width: 8.0,
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.book),
+                    onPressed: (){
+                      print('book');
+                    },
+                    iconSize: 100.0,
+                  ),
+                ],
               ),
-              Center(
-                child: Container(
-                    color: Colors.deepOrange[300],
-                    child:IconButton(
-                      iconSize: 130.0,
-                      icon:Icon(Icons.message,color: Colors.white),
-                      onPressed:() {},
-                    )),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  IconButton(
+                    icon: Icon(Icons.wb_auto),
+                    onPressed: (){
+                      print('weather');
+                    },
+                    iconSize: 100.0,
+                  ),
+                  SizedBox(
+                    width: 8.0,
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.music_note),
+                    onPressed: (){
+                      print('music');
+                    },
+                    iconSize: 100.0,
+                  ),
+                  SizedBox(
+                    width: 8.0,
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.library_books),
+                    onPressed: (){
+                      print('band');
+                    },
+                    iconSize: 100.0,
+                  ),
+                ],
               ),
-              Center(
-                child: Container(
-                    color: Colors.lightBlue[200],
-                    child:IconButton(
-                      iconSize: 130.0,
-                      icon:Icon(Icons.photo_camera,color: Colors.white),
-                      onPressed: () {},
-                    )),
-              ),
-              Center(
-                child: Container(
-                    color: Colors.lightBlue[300],
-                    child:IconButton(
-                      iconSize: 130.0,
-                      icon:Icon(Icons.call,color: Colors.white),
-                      onPressed: () {},
-                    )),
-              ),
-              Center(
-                child: Container(
-                    color: Colors.deepOrange[300],
-                    child:IconButton(
-                      iconSize: 130.0,
-                      icon:Icon(Icons.message,color: Colors.white),
-                      onPressed:() {},
-                    )),
-              ),
-              Center(
-                child: Container(
-                    color: Colors.lightBlue[300],
-                    child:IconButton(
-                      iconSize: 130.0,
-                      icon:Icon(Icons.call,color: Colors.white),
-                      onPressed: () {},
-                    )),
-              ),
-              Center(
-                child: Container(
-                    color: Colors.deepOrange[300],
-                    child:IconButton(
-                      iconSize: 130.0,
-                      icon:Icon(Icons.message,color: Colors.white),
-                      onPressed:() {},
-                    )),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(30,3,30,3),
-                child: RaisedButton(
-                  child: Text('다음 페이지'),
-                  onPressed: () async {
-                    await Navigator.pushReplacement(
-                        context, MaterialPageRoute(builder: (context) => Page2()));
-                    updateState();
-                  },
-                ),
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    RaisedButton(
+                      child: Text('다음 페이지'),
+                      onPressed: () async {
+                        await Navigator.pushReplacement(
+                            context, MaterialPageRoute(builder: (context) => Page2()));
+                        updateState();
+                      },
+                    ),
+                  ]
               )
             ]
         ),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        elevation: 0.0,
-        child: Container(
-          child: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {},
-          ),
-        ),
-      ),
+      )
     );
   }
 }
