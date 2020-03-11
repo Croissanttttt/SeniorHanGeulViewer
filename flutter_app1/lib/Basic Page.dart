@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_app1/page 1.dart';
 
@@ -13,17 +15,21 @@ class _BasicPageState extends State<BasicPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+        resizeToAvoidBottomPadding: false,
+        appBar: AppBar(
         title: Text(widget.title),
       ),
       body: Page1(),
       bottomNavigationBar: BottomAppBar(
         elevation: 0.0,
-        child: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {},
-        ),
-      ),
+        child: FlatButton(
+            onPressed: (){exit(0);},
+            child: Text(
+                '종료',
+            style: TextStyle(color: Colors.black, fontSize: 25)
+            )
+        )
+      )
     );
   }
 }

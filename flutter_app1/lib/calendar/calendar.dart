@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:flutter_app1/calendar/Constants.dart';
 
 class Calendar extends StatefulWidget {
   @override
@@ -15,6 +17,7 @@ class _CalendarState extends State<Calendar> {
   TextEditingController _eventController;
   SharedPreferences prefs;
   int index;
+
   @override
   void initState() {
     super.initState();
@@ -48,14 +51,10 @@ class _CalendarState extends State<Calendar> {
     return newMap;
   }
 
-  removeValues (_events) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.remove("stringValue");
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -119,26 +118,112 @@ class _CalendarState extends State<Calendar> {
                 ),
               ),
             ),
-            ..._selectedEvents.map((event) => Dismissible(
-              key: Key(event),
-              child: ListTile(
-                title: Text(event),
-              ),
-              onDismissed: (direction){
-                setState(() {
-                  event.removeAt(index);
-                });
-              },
-              direction: DismissDirection.endToStart,
-              background: Container(
-                alignment: Alignment.centerRight,
-                color: Colors.blueAccent,
-                child: Text('삭제   ', style: TextStyle(color: Colors.white, fontSize: 20.0),),
-              ),
-            )),
+            ..._selectedEvents.map((event) =>
+                ListTile(
+                  key: UniqueKey(),
+                  title: Text(event),
+                  trailing: PopupMenuButton<String>(
+                    onSelected: choiceAction,
+                    icon: Icon(Icons.more_vert),
+                    itemBuilder: (BuildContext context) {
+                      return Constants.choices.map((String choice) {
+                        return PopupMenuItem<String>(
+                          value: choice,
+                          child: Text(choice),
+                        );
+                      }).toList();
+                    }
+                  ),
+                ),
+            ),
           ],
         ),
       ),
+    );
+  }
+
+  void choiceAction(String choice) {
+    if(choice == Constants.Modifying) {
+      print('Modifying');
+      _showModifyDialog();
+    }
+    if(choice == Constants.Delete) {
+      print('Delete');
+      _showremoveDialog();
+    }
+
+  }
+
+  _showremoveDialog() {
+    showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          content: Column(
+            children: <Widget>[
+              Text('삭제하시겠습니까?'),
+            ],
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text("취소"),
+              onPressed: (){
+                setState(() {
+                  _eventController.clear();
+                  Navigator.pop(context);
+                });
+              },
+            ),
+            FlatButton(
+              child: Text("확인"),
+              onPressed: (){
+                setState(() {
+                  _events[_controller.selectedDay].remove(_eventController.text);
+                  prefs.remove("dates");
+                  _eventController.clear();
+                  Navigator.pop(context);
+                });
+              },
+            ),
+          ],
+        )
+    );
+  }
+
+  _showModifyDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text('수정할 일정을 적어주세요'),
+            TextField(
+              controller: _eventController,
+            )
+          ],
+        ),
+        actions: <Widget>[
+          FlatButton(
+            child: Text("취소"),
+            onPressed: (){
+              setState(() {
+                _eventController.clear();
+                Navigator.pop(context);
+              });
+            },
+          ),
+          FlatButton(
+            child: Text("수정"),
+            onPressed: (){
+              if(_eventController.text.isEmpty) return;
+              setState(() {
+                _eventController.clear();
+                Navigator.pop(context);
+              });
+            },
+          ),
+        ],
+      )
     );
   }
 
@@ -157,6 +242,15 @@ class _CalendarState extends State<Calendar> {
           ),
           actions: <Widget>[
             FlatButton(
+              child: Text("취소"),
+              onPressed: (){
+                setState(() {
+                  _eventController.clear();
+                  Navigator.pop(context);
+                });
+              },
+            ),
+            FlatButton(
               child: Text("저장"),
               onPressed: (){
                 if(_eventController.text.isEmpty) return;
@@ -171,7 +265,7 @@ class _CalendarState extends State<Calendar> {
                   Navigator.pop(context);
                 });
               },
-            )
+            ),
           ],
         )
     );

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app1/calendar/calendar.dart';
 import 'package:flutter_app1/page 1.dart';
 import 'package:flutter_app1/clock/clock.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 class Page2 extends StatelessWidget {
   @override
@@ -10,13 +9,6 @@ class Page2 extends StatelessWidget {
     return MaterialApp(
       title: 'Page2',
       home: Page2StatefulWidget(),
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      supportedLocales: [
-        const Locale('ko'),
-      ],
     );
   }
 }
@@ -30,6 +22,7 @@ class _Page2StatefulWidgetState extends State<Page2StatefulWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       body: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
