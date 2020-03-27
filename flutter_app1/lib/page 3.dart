@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app1/memo/memo.dart';
+import 'package:flutter_app1/todolist/todolist.dart';
 import 'package:flutter_app1/page 1.dart';
 import 'package:flutter_app1/page 2.dart';
 
@@ -7,7 +7,7 @@ class Page3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'SeniorHanguelViewer',
+      title: '한글 바로가기',
       home: Page3StatefulWidget(),
       debugShowCheckedModeBanner: false,
     );
@@ -24,7 +24,7 @@ class _Page3StatefulWidgetState extends State<Page3StatefulWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomPadding: false,
-      body: todolist(),
+      body: Todolist(),
         bottomNavigationBar: BottomAppBar(
             elevation: 0.0,
             child: Row(

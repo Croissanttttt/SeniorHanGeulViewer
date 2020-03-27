@@ -7,7 +7,7 @@ class Page2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'SeniorHanguelViewer',
+      title: '한글 바로가기',
       home: Page2StatefulWidget(),
       debugShowCheckedModeBanner: false,
     );

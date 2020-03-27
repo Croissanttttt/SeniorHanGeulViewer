@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app1/page 2.dart';
 
 class Page1 extends StatelessWidget {
-  static const String _title = 'SeniorHanguelViewer';
+  static const String _title = '한글 바로가기';
 
   @override
   Widget build(BuildContext context) {
