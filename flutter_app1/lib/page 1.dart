@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app1/page 2.dart';
 
 class Page1 extends StatelessWidget {
-  static const String _title = 'Flutter Code Sample';
+  static const String _title = 'SeniorHanguelViewer';
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: _title,
       home: Page1StatefulWidget(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -116,7 +117,7 @@ class _Page1StatefulWidgetState extends State<Page1StatefulWidget> {
                       width: 40.0,
                     ),
                     IconButton(
-                      icon: Image.asset('images/extra.png'),
+                      icon: Image.asset('images/next_page.png'),
                       onPressed: () async {
                         await Navigator.pushReplacement(
                             context, MaterialPageRoute(builder: (context) => Page2()));
