@@ -27,6 +27,9 @@ dependencies:
   intl: ^0.16.0
   shared_preferences: ^0.5.6+2
   provider: ^3.0.0+1
+  intent: ^1.1.0
+  open_appstore: ^1.0.2
+  flutter_appavailability: ^0.0.21
 
 dev_dependencies:
   flutter_test:

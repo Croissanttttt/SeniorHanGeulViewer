@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app1/page 1.dart';
 import 'package:flutter_app1/page 3.dart';
-import 'package:flutter_app1/clock/clock.dart';
+import 'package:flutter_app1/clock/New Clock.dart';
 
 class Page2 extends StatelessWidget {
   @override
@@ -24,8 +24,10 @@ class _Page2StatefulWidgetState extends State<Page2StatefulWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomPadding: false,
-      body: Container(
-        child: Clock()
+      body: Center(
+        child: Container(
+          child: wookieclock()
+        ),
       ),
         bottomNavigationBar: BottomAppBar(
             elevation: 0.0,

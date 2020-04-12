@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app1/Basic Page.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 
 void main() {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   initializeDateFormatting().then((_) => runApp(Start()));
+  Intl.defaultLocale = 'ko_KR';
 }
 
 class Start extends StatelessWidget {

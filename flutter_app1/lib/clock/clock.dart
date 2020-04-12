@@ -5,7 +5,6 @@ import 'package:intl/intl.dart' show DateFormat;
 
 class Clock extends StatefulWidget {
   Clock({Key key}) : super(key: key);
-
   @override
   _ClockState createState() => _ClockState();
 }
@@ -110,7 +109,6 @@ class _ClockState extends State<Clock> {
       ));
   }
 }
-
 class Time {
   List<String> timeIntegers;
 

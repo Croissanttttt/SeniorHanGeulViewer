@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app1/page 2.dart';
+import 'package:flutter/services.dart';
+import 'dart:io';
 
 class Page1 extends StatelessWidget {
   static const String _title = '한글 바로가기';
@@ -65,6 +67,7 @@ class _Page1StatefulWidgetState extends State<Page1StatefulWidget> {
                     IconButton(
                       icon: Image.asset('images/kakao2.png'),
                       onPressed: (){
+                        AppAvailability.launchApp("com.kakao.talk");
                         print('kakao');
                       },
                       iconSize: 130.0,
@@ -75,6 +78,7 @@ class _Page1StatefulWidgetState extends State<Page1StatefulWidget> {
                     IconButton(
                       icon: Image.asset('images/contact2.png'),
                       onPressed: (){
+                        AppAvailability.launchApp("com.skt.prod.phonebook");
                         print('contact');
                       },
                       iconSize: 130.0,
@@ -98,6 +102,7 @@ class _Page1StatefulWidgetState extends State<Page1StatefulWidget> {
                       icon: Image.asset('images/gallery2.png'),
                       onPressed: (){
                         print('gallery');
+                        AppAvailability.launchApp("com.google.android.apps.photos");
                       },
                       iconSize: 130.0,
                     ),
@@ -109,6 +114,7 @@ class _Page1StatefulWidgetState extends State<Page1StatefulWidget> {
                     IconButton(
                       icon: Image.asset('images/band2.png'),
                       onPressed: (){
+                        AppAvailability.launchApp("com.nhn.android.band");
                         print('band');
                       },
                       iconSize: 130.0,
@@ -133,5 +139,23 @@ class _Page1StatefulWidgetState extends State<Page1StatefulWidget> {
         ),
       ),
     );
+  }
+}
+class AppAvailability
+{
+  static const MethodChannel _channel =
+  const MethodChannel('com.pichillilorenzo/flutter_appavailability');
+  static Future<void> launchApp(String uri) async {
+    Map<String, dynamic> args = <String, dynamic>{};
+    args.putIfAbsent('uri', () => uri);
+    if (Platform.isAndroid) {
+      await _channel.invokeMethod("launchApp", args);
+    }
+    else if (Platform.isIOS) {
+      bool appAvailable = await _channel.invokeMethod("launchApp", args);
+      if (!appAvailable) {
+        throw PlatformException(code: "", message: "App not found $uri");
+      }
+    }
   }
 }
